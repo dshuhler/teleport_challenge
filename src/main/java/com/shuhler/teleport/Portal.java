@@ -12,6 +12,14 @@ public class Portal {
     this.cityB = cityB;
   }
 
+  public String getCityA() {
+    return cityA;
+  }
+
+  public String getCityB() {
+    return cityB;
+  }
+
   @Override
   public boolean equals(Object o) {
     if (this == o) return true;
