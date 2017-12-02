@@ -58,5 +58,21 @@ public class TeleportationNetworkTest {
     assertTrue(linkedCityNames.contains("F"));
   }
 
+  @Test
+  public void testTwoQueriesOnSameNetwork() {
+    //this will fail if the implementation uses flags to track what nodes have been searched but fails to reset them
+    testNetwork.findLinkedCities("A", 2);
+    Set<String> linkedCityNames = testNetwork.findLinkedCities("A", 3);
+
+    System.out.println(linkedCityNames);
+
+    assertEquals(5, linkedCityNames.size());
+    assertTrue(linkedCityNames.contains("B"));
+    assertTrue(linkedCityNames.contains("C"));
+    assertTrue(linkedCityNames.contains("D"));
+    assertTrue(linkedCityNames.contains("E"));
+    assertTrue(linkedCityNames.contains("F"));
+  }
+
 
 }

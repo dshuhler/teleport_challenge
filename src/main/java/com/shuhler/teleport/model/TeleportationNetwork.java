@@ -17,6 +17,7 @@ public class TeleportationNetwork {
   }
 
   public Set<String> findLinkedCities(String cityName, int jumps) {
+    resetSearchFlags();
     City rootCity = cityMap.get(cityName);
     return rootCity.getLinkedCities(jumps);
   }
@@ -36,6 +37,9 @@ public class TeleportationNetwork {
   }
 
 
+  private void resetSearchFlags() {
+    cityMap.values().forEach(c -> c.setSearched(false));
+  }
 
 
 }

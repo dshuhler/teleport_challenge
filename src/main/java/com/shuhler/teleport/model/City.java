@@ -23,6 +23,10 @@ public class City {
     return name;
   }
 
+  public void setSearched(boolean searched) {
+    this.searched = searched;
+  }
+
   public boolean isSearched() {
     return searched;
   }
@@ -39,12 +43,20 @@ public class City {
 
     Set<String> linkedCityNames = unSearchedCities.stream().map(City::getName).collect(Collectors.toSet());
 
-    for (City adjecentCity : unSearchedCities) {
+    if (jumps > 1) {
+      for (City adjecentCity : unSearchedCities) {
         linkedCityNames.addAll(adjecentCity.getLinkedCities(jumps - 1));
+      }
     }
 
     return linkedCityNames;
   }
 
-
+  @Override
+  public String toString() {
+    return "City{" +
+            "name='" + name + '\'' +
+            ", searched=" + searched +
+            '}';
+  }
 }
