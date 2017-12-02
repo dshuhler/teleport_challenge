@@ -1,29 +1,61 @@
 package com.shuhler.teleport.model;
 
 import com.shuhler.teleport.Portal;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
-import static junit.framework.TestCase.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 
 public class TeleportationNetworkTest {
 
-  @Test
-  public void testCloseLinkedCities() {
+  private TeleportationNetwork testNetwork;
 
+  @BeforeEach
+  public void init() {
     List<Portal> portals = new ArrayList<>();
 
     portals.add(new Portal("A", "B"));
     portals.add(new Portal("A", "C"));
-    portals.add(new Portal("B", "BA"));
-    portals.add(new Portal("B", "BB"));
+    portals.add(new Portal("B", "C"));
+    portals.add(new Portal("B", "D"));
+    portals.add(new Portal("D", "F"));
+    portals.add(new Portal("F", "H"));
+    portals.add(new Portal("D", "E"));
 
-    TeleportationNetwork testNetwork = new TeleportationNetwork(portals);
+    testNetwork = new TeleportationNetwork(portals);
+  }
 
-    assertEquals(2, testNetwork.findLinkedCities("A", 1).size());
 
+  @Test
+  public void testZeroJumpLinkedCities() {
+    assertEquals(0, testNetwork.findLinkedCities("A", 0).size());
+  }
+
+  @Test
+  public void testOneJumpLinkedCities() {
+    Set<String> linkedCityNames = testNetwork.findLinkedCities("A", 1);
+
+    assertEquals(2, linkedCityNames.size());
+    assertTrue(linkedCityNames.contains("B"));
+    assertTrue(linkedCityNames.contains("C"));
+  }
+
+  @Test
+  public void testMultiJumpLinkedCities() {
+    Set<String> linkedCityNames = testNetwork.findLinkedCities("A", 3);
+
+    assertEquals(5, linkedCityNames.size());
+    assertTrue(linkedCityNames.contains("B"));
+    assertTrue(linkedCityNames.contains("C"));
+    assertTrue(linkedCityNames.contains("D"));
+    assertTrue(linkedCityNames.contains("E"));
+    assertTrue(linkedCityNames.contains("F"));
   }
 
 

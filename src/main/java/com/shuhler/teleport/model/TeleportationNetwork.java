@@ -5,6 +5,7 @@ import com.shuhler.teleport.Portal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 public class TeleportationNetwork {
 
@@ -15,12 +16,9 @@ public class TeleportationNetwork {
     portals.forEach(this::addPortalToNetwork);
   }
 
-  public List<String> findLinkedCities(String cityName, int jumps) {
-
+  public Set<String> findLinkedCities(String cityName, int jumps) {
     City rootCity = cityMap.get(cityName);
-
     return rootCity.getLinkedCities(jumps);
-
   }
 
 
@@ -36,7 +34,6 @@ public class TeleportationNetwork {
     cityB.addPortalLink(cityA);
 
   }
-
 
 
 

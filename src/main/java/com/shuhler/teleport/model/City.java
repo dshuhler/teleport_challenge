@@ -2,7 +2,6 @@ package com.shuhler.teleport.model;
 
 import java.util.Collections;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -10,6 +9,7 @@ public class City {
 
   private String name;
   private Set<City> adjecentCities = new HashSet<>();
+  private boolean searched = false;
 
   public City(String name) {
     this.name = name;
@@ -23,16 +23,24 @@ public class City {
     return name;
   }
 
-  public List<String> getLinkedCities(int jumps) {
+  public boolean isSearched() {
+    return searched;
+  }
+
+  public Set<String> getLinkedCities(int jumps) {
+
+    searched = true;
 
     if (jumps <= 0) {
-      return Collections.emptyList();
+      return Collections.emptySet();
     }
 
-    List<String> linkedCityNames = adjecentCities.stream().map(City::getName).collect(Collectors.toList());
+    Set<City> unSearchedCities = adjecentCities.stream().filter(c -> !c.isSearched()).collect(Collectors.toSet());
 
-    for (City adjecentCity : adjecentCities) {
-      linkedCityNames.addAll(adjecentCity.getLinkedCities(jumps - 1));
+    Set<String> linkedCityNames = unSearchedCities.stream().map(City::getName).collect(Collectors.toSet());
+
+    for (City adjecentCity : unSearchedCities) {
+        linkedCityNames.addAll(adjecentCity.getLinkedCities(jumps - 1));
     }
 
     return linkedCityNames;
