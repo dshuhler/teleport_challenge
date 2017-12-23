@@ -22,6 +22,11 @@ public class TeleportationNetwork {
     return rootCity.getLinkedCities(jumps);
   }
 
+  public boolean areConnected(String cityNameA, String cityNameB) {
+    City rootCity = cityMap.get(cityNameA);
+    return rootCity.isConnectedTo(cityNameB);
+  }
+
 
   private void addPortalToNetwork(Portal portal) {
 

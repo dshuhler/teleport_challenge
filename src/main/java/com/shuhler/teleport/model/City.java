@@ -2,6 +2,7 @@ package com.shuhler.teleport.model;
 
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -32,24 +33,44 @@ public class City {
   }
 
   public Set<String> getLinkedCities(int jumps) {
-
     searched = true;
 
     if (jumps <= 0) {
       return Collections.emptySet();
     }
 
-    Set<City> unSearchedCities = adjecentCities.stream().filter(c -> !c.isSearched()).collect(Collectors.toSet());
+    Set<City> unsearchedAdjecentCities = getUnsearchedAdjecentCities();
 
-    Set<String> linkedCityNames = unSearchedCities.stream().map(City::getName).collect(Collectors.toSet());
+    Set<String> linkedCityNames = unsearchedAdjecentCities.stream().map(City::getName).collect(Collectors.toSet());
 
-    if (jumps > 1) {
-      for (City adjecentCity : unSearchedCities) {
-        linkedCityNames.addAll(adjecentCity.getLinkedCities(jumps - 1));
-      }
+    for (City adjecentCity : unsearchedAdjecentCities) {
+      linkedCityNames.addAll(adjecentCity.getLinkedCities(jumps - 1));
     }
 
     return linkedCityNames;
+  }
+
+  public boolean isConnectedTo(String cityName) {
+    searched = true;
+
+    if (getUnsearchedAdjecentCities().contains(new City(cityName))) {
+      return true;
+    } else {
+      for (City adjecentCity : getUnsearchedAdjecentCities()) {
+        if (adjecentCity.isConnectedTo(cityName)) {
+          return true;
+        }
+      }
+    }
+
+    return false;
+  }
+
+
+  private Set<City> getUnsearchedAdjecentCities() {
+    return adjecentCities.stream()
+            .filter(c -> !c.isSearched())
+            .collect(Collectors.toSet());
   }
 
   @Override
@@ -58,5 +79,18 @@ public class City {
             "name='" + name + '\'' +
             ", searched=" + searched +
             '}';
+  }
+
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) return true;
+    if (o == null || getClass() != o.getClass()) return false;
+    City city = (City) o;
+    return Objects.equals(name, city.name);
+  }
+
+  @Override
+  public int hashCode() {
+    return Objects.hash(name);
   }
 }
