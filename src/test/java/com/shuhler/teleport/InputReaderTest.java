@@ -26,12 +26,4 @@ public class InputReaderTest {
     assertTrue(portals.contains(new Portal("Philadelphia", "New York")));
   }
 
-
-
-
-
-
-
-
-
 }

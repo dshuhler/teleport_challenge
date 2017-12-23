@@ -23,6 +23,7 @@ public class TeleportationNetwork {
   }
 
   public boolean areConnected(String cityNameA, String cityNameB) {
+    resetSearchFlags();
     City rootCity = cityMap.get(cityNameA);
     return rootCity.isConnectedTo(cityNameB);
   }
