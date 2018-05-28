@@ -48,16 +48,10 @@ public class TeleportInputReader {
 
 
     public List<TeleportQuery> getQueries() {
-        return null;
-    }
-
-    private TeleportQuery parseQuery(String inputLine) {
-
-        if (inputLine.contains(PORTAL_INPUT_DIVIDER)) {
-            return null;
-        }
-
-        return TeleportQuery.buildQuery(inputLine);
+        return inputLines.stream()
+                .map(TeleportQuery::buildQuery)
+                .filter(Objects::nonNull)
+                .collect(Collectors.toList());
     }
 
 }

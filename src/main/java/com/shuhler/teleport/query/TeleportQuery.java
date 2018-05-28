@@ -3,11 +3,14 @@ package com.shuhler.teleport.query;
 import com.shuhler.teleport.model.TeleportNet;
 
 import java.util.List;
-import java.util.regex.Pattern;
+
 
 public abstract class TeleportQuery {
 
     private String queryString;
+
+    // If more query types are going to be added, I'd move this logic to its own class and consider
+    // using a custom annotation to associate the regex pattern with the query.
 
     public static TeleportQuery buildQuery(String inputLine) {
 
@@ -19,7 +22,6 @@ public abstract class TeleportQuery {
             return new LoopQuery(inputLine);
         }
 
-        //throw exception?
         return null;
     }
 
