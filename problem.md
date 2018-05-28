@@ -24,20 +24,20 @@ San Fransisco - Oakland
 Los Angeles - Oakland
 Seattle - New York
 Seattle - Baltimore
-cities from Seattle in 1 jumps
-cities from Seattle in 2 jumps
-can I teleport from New York to Atlanta
-can I teleport from Oakland to Atlanta
-loop possible from Oakland
-loop possible from Washington
+cities in jumps: Seattle, 1
+cities in jumps: Seattle, 2
+teleport between: New York, Atlanta
+teleport between: Oakland, Atlanta
+loop possible: Oakland
+loop possible: Washington
 ~~~~
 
 Example output:
 ~~~~
-cities from Seattle in 1 jumps: New York, Baltimore
-cities from Seattle in 2 jumps: New York, Baltimore, Philadelphia, Washington
-can I teleport from New York to Atlanta: yes
-can I teleport from Oakland to Atlanta: no
-loop possible from Oakland: yes
-loop possible from Washington: no
+Cities from Seattle in 1 jumps: New York, Baltimore
+Cities from Seattle in 2 jumps: New York, Baltimore, Philadelphia, Washington
+Can I teleport from New York to Atlanta: yes
+Can I teleport from Oakland to Atlanta: no
+Loop possible from Oakland: yes
+Loop possible from Washington: no
 ~~~~

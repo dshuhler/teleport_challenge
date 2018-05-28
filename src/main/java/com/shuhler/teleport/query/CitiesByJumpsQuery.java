@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
 
 public class CitiesByJumpsQuery extends TeleportQuery {
 
-    protected static final Pattern PATTERN = Pattern.compile("^cities from.*");
+    protected static final Pattern PATTERN = Pattern.compile("^cities in jumps:.*");
 
     private String queryString;
 
@@ -18,10 +18,12 @@ public class CitiesByJumpsQuery extends TeleportQuery {
     @Override
     String query(TeleportNet teleportNet) {
 
-        List<String> myList = List.of(queryString.split(" "));
+        String queryParams = queryString.substring(queryString.indexOf(":") + 2);
 
-        String cityName = myList.get(2);
-        int jumps = Integer.parseInt(myList.get(4));
+        List<String> myList = List.of(queryParams.split(", "));
+
+        String cityName = myList.get(0);
+        int jumps = Integer.parseInt(myList.get(1));
 
         Set<String> linkedCities = teleportNet.findLinkedCities(cityName, jumps);
 
@@ -29,6 +31,6 @@ public class CitiesByJumpsQuery extends TeleportQuery {
         List<String> sortedLinkedCities = new ArrayList<>(linkedCities);
         Collections.sort(sortedLinkedCities);
 
-        return queryString + ": " + String.join(", ", sortedLinkedCities);
+        return "Cities from " + cityName + " in " + jumps + " jumps: " + String.join(", ", sortedLinkedCities);
     }
 }

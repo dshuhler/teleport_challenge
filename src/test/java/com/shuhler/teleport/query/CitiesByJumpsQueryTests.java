@@ -16,20 +16,21 @@ public class CitiesByJumpsQueryTests {
 
     @Test
     public void testOneWordCities() {
-        CitiesByJumpsQuery query = new CitiesByJumpsQuery("cities from Seattle in 2 jumps");
-        when(mockTeleportNet.findLinkedCities("Seattle", 2)).thenReturn(Set.of("Vegas", "Portland"));
+        CitiesByJumpsQuery query = new CitiesByJumpsQuery("cities in jumps: Seattle, 1");
+        when(mockTeleportNet.findLinkedCities("Seattle", 1)).thenReturn(Set.of("Vegas", "Portland"));
 
         String result = query.query(mockTeleportNet);
-        assertEquals("cities from Seattle in 2 jumps: Portland, Vegas", result);
+        assertEquals("Cities from Seattle in 1 jumps: Portland, Vegas", result);
     }
 
     @Test
     public void testMultiWordCities() {
-        CitiesByJumpsQuery query = new CitiesByJumpsQuery("cities from San Fransisco in 2 jumps");
-        when(mockTeleportNet.findLinkedCities("Seattle", 2)).thenReturn(Set.of("Las Vegas", "A A A"));
+        CitiesByJumpsQuery query = new CitiesByJumpsQuery("cities in jumps: San Fransisco, 2");
+        when(mockTeleportNet.findLinkedCities("San Fransisco", 2))
+                .thenReturn(Set.of("Las Vegas", "A A A"));
 
         String result = query.query(mockTeleportNet);
-        assertEquals("cities from San Fransisco in 2 jumps: Portland, Vegas", result);
+        assertEquals("Cities from San Fransisco in 2 jumps: A A A, Las Vegas", result);
     }
 
 }
