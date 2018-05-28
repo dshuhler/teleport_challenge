@@ -2,10 +2,7 @@ package com.shuhler.teleport.query;
 
 import com.shuhler.teleport.model.TeleportNet;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.regex.Pattern;
 
 public class CitiesByJumpsQuery extends TeleportQuery {
@@ -21,13 +18,17 @@ public class CitiesByJumpsQuery extends TeleportQuery {
     @Override
     String query(TeleportNet teleportNet) {
 
-        List<String> myList = new ArrayList<>(Arrays.asList(queryString.split(" ")));
+        List<String> myList = List.of(queryString.split(" "));
 
         String cityName = myList.get(2);
         int jumps = Integer.parseInt(myList.get(4));
 
         Set<String> linkedCities = teleportNet.findLinkedCities(cityName, jumps);
 
-        return queryString + ": " + String.join(",", linkedCities);
+        // It's not required to sort the cities, but it makes the output consistent
+        List<String> sortedLinkedCities = new ArrayList<>(linkedCities);
+        Collections.sort(sortedLinkedCities);
+
+        return queryString + ": " + String.join(", ", sortedLinkedCities);
     }
 }

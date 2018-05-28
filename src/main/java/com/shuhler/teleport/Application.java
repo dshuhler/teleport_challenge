@@ -29,11 +29,11 @@ public class Application {
 
       List<TeleportQuery> queries = teleportInputReader.getQueries();
 
-      List<String> queryResults = queries.stream().map(q -> q.query(network)).collect(Collectors.toList());
-
-      for (String result : queryResults) {
-          System.out.println(result);
-      }
+//      List<String> queryResults = queries.stream().map(q -> q.query(network)).collect(Collectors.toList());
+//
+//      for (String result : queryResults) {
+//          System.out.println(result);
+//      }
   }
 
 
