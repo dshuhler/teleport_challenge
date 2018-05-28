@@ -3,6 +3,8 @@ package com.shuhler.teleport.query;
 import com.shuhler.teleport.model.TeleportNet;
 import org.junit.jupiter.api.Test;
 
+import java.util.Set;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -13,23 +15,22 @@ public class CitiesByJumpsQueryTests {
 
 
     @Test
-    public void canHandleOneWordCities() {
-        ConnectedCitiesQuery query = new ConnectedCitiesQuery("teleport between: Oakland, Atlanta");
-        when(mockTeleportNet.areConnected("Oakland", "Atlanta"))
-                .thenReturn(true);
+    public void testOneWordCities() {
+        CitiesByJumpsQuery query = new CitiesByJumpsQuery("cities in jumps: Seattle, 1");
+        when(mockTeleportNet.findLinkedCities("Seattle", 1)).thenReturn(Set.of("Vegas", "Portland"));
 
         String result = query.query(mockTeleportNet);
-        assertEquals("Can I teleport from Oakland to Atlanta: true", result);
+        assertEquals("Cities from Seattle in 1 jumps: Portland, Vegas", result);
     }
 
     @Test
-    public void canHandleMultiWordCities() {
-        ConnectedCitiesQuery query = new ConnectedCitiesQuery("teleport between: New York, A A A");
-        when(mockTeleportNet.areConnected("New York", "A A A"))
-                .thenReturn(false);
+    public void testMultiWordCities() {
+        CitiesByJumpsQuery query = new CitiesByJumpsQuery("cities in jumps: San Fransisco, 2");
+        when(mockTeleportNet.findLinkedCities("San Fransisco", 2))
+                .thenReturn(Set.of("Las Vegas", "A A A"));
 
         String result = query.query(mockTeleportNet);
-        assertEquals("Can I teleport from New York to A A A: false", result);
+        assertEquals("Cities from San Fransisco in 2 jumps: A A A, Las Vegas", result);
     }
 
 }

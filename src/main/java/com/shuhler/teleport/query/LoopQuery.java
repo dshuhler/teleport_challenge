@@ -8,8 +8,8 @@ public class LoopQuery extends TeleportQuery {
 
     protected static final Pattern PATTERN = Pattern.compile("^loop possible from.*");
 
-    public LoopQuery(String inputLine) {
-
+    public LoopQuery(String queryString) {
+        super(queryString);
     }
 
     @Override
