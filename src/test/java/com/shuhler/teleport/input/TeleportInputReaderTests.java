@@ -1,4 +1,4 @@
-package com.shuhler.teleport;
+package com.shuhler.teleport.input;
 
 import com.shuhler.teleport.input.Portal;
 import com.shuhler.teleport.input.TeleportInputReader;
@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class InputReaderTest {
+public class TeleportInputReaderTests {
 
     @Test
     public void testPortalRead() {
