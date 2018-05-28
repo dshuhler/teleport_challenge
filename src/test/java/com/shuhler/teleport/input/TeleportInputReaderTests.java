@@ -1,7 +1,5 @@
 package com.shuhler.teleport.input;
 
-import com.shuhler.teleport.input.Portal;
-import com.shuhler.teleport.input.TeleportInputReader;
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
