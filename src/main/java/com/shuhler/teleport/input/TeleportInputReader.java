@@ -52,7 +52,12 @@ public class TeleportInputReader {
     }
 
     private TeleportQuery parseQuery(String inputLine) {
-        return null;
+
+        if (inputLine.contains(PORTAL_INPUT_DIVIDER)) {
+            return null;
+        }
+
+        return TeleportQuery.buildQuery(inputLine);
     }
 
 }

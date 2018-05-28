@@ -10,6 +10,7 @@
 1. Is the solution tested?
     1. Is there reasonable coverage of happy path and edge cases?
         1. Have they tested with 0, 1, lots of nodes?
+    1. Are dependencies mocked/stubbed/faked?
     1. Is the test code clean?
 1. Are they using a reasonable algorithm? everything should be at most O(n)
 1. Are comments readable? Are assumptions documented?
