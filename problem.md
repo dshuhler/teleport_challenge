@@ -41,3 +41,5 @@ Can I teleport from Oakland to Atlanta: false
 Loop possible from Oakland: true
 Loop possible from Washington: false
 ~~~~
+
+You may not use any outside libraries **except** for testing.
