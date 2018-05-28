@@ -27,7 +27,7 @@ public abstract class TeleportQuery {
         this.queryString = queryString;
     }
 
-    protected List<String> paramList() {
+    protected List<String> getParams() {
         String queryParams = queryString.substring(queryString.indexOf(":") + 2);
        return List.of(queryParams.split(", "));
     }

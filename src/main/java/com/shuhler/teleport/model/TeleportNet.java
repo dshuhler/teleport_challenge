@@ -28,6 +28,9 @@ public class TeleportNet {
         return rootCity.isConnectedTo(cityNameB);
     }
 
+    public boolean hasLoop(String cityName) {
+        return false;
+    }
 
     private void addPortalToNetwork(Portal portal) {
 

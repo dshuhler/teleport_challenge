@@ -15,8 +15,8 @@ public class ConnectedCitiesQuery extends TeleportQuery {
     @Override
     String query(TeleportNet teleportNet) {
 
-        String cityA = paramList().get(0);
-        String cityB = paramList().get(1);
+        String cityA = getParams().get(0);
+        String cityB = getParams().get(1);
 
         boolean result = teleportNet.areConnected(cityA, cityB);
 

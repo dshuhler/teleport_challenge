@@ -16,8 +16,8 @@ public class CitiesByJumpsQuery extends TeleportQuery {
     @Override
     String query(TeleportNet teleportNet) {
 
-        String cityName = paramList().get(0);
-        int jumps = Integer.parseInt(paramList().get(1));
+        String cityName = getParams().get(0);
+        int jumps = Integer.parseInt(getParams().get(1));
 
         Set<String> linkedCities = teleportNet.findLinkedCities(cityName, jumps);
 

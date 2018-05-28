@@ -14,6 +14,8 @@ public class LoopQuery extends TeleportQuery {
 
     @Override
     String query(TeleportNet teleportNet) {
-        return null;
+        String cityName = getParams().get(0);
+        boolean result = teleportNet.hasLoop(cityName);
+        return "Loop possible from " + cityName + ": " + result;
     }
 }
