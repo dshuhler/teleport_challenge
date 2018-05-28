@@ -9,7 +9,9 @@ Questions you must be able to answer:
 2. Can someone get from city X to city Y?
 3. Starting in city X, is it possible to travel in a loop (leave the city on one route and return on another, without traveling along the same route twice)?
 
-Input to the program will be a list of teleportation routes, followed by a list of queries.
+Input to the program will be a list of teleportation routes, followed by a list of queries. Your solution should take a 
+text file as input and output to the console. Example input is described below but your program should be able to handle
+ any reasonable input.
 
 Example input:
 ~~~~

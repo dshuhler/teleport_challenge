@@ -15,9 +15,9 @@ public class InputReaderTest {
     @Test
     public void testPortalRead() {
         Path path = Paths.get("src/test/resources/portals.txt");
-        TeleportationInputReader teleportationInputReader = new TeleportationInputReader(path);
+        TeleportInputReader teleportInputReader = new TeleportInputReader(path);
 
-        List<Portal> portals = teleportationInputReader.getPortals();
+        List<Portal> portals = teleportInputReader.getPortals();
 
         assertEquals(4, portals.size());
         assertTrue(portals.contains(new Portal("Washington", "Baltimore")));
