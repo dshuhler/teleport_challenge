@@ -1,6 +1,6 @@
 package com.shuhler.teleport.model;
 
-import com.shuhler.teleport.Portal;
+import com.shuhler.teleport.input.Portal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,9 +12,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 
-public class TeleportationNetworkTest {
+public class TeleportNetTest {
 
-    private TeleportationNetwork testNetwork;
+    private TeleportNet testNetwork;
 
     @BeforeEach
     public void init() {
@@ -28,7 +28,7 @@ public class TeleportationNetworkTest {
         portals.add(new Portal("F", "H"));
         portals.add(new Portal("D", "E"));
 
-        testNetwork = new TeleportationNetwork(portals);
+        testNetwork = new TeleportNet(portals);
     }
 
 
@@ -63,8 +63,6 @@ public class TeleportationNetworkTest {
         //this will fail if the implementation uses flags to track what nodes have been searched but fails to reset them
         testNetwork.findLinkedCities("A", 2);
         Set<String> linkedCityNames = testNetwork.findLinkedCities("A", 3);
-
-        System.out.println(linkedCityNames);
 
         assertEquals(5, linkedCityNames.size());
         assertTrue(linkedCityNames.contains("B"));

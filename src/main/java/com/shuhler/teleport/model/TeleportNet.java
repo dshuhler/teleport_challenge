@@ -1,18 +1,18 @@
 package com.shuhler.teleport.model;
 
-import com.shuhler.teleport.Portal;
+import com.shuhler.teleport.input.Portal;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class TeleportationNetwork {
+public class TeleportNet {
 
     private Map<String, City> cityMap = new HashMap<>();
 
 
-    public TeleportationNetwork(List<Portal> portals) {
+    public TeleportNet(List<Portal> portals) {
         portals.forEach(this::addPortalToNetwork);
     }
 

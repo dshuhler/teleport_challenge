@@ -1,4 +1,6 @@
-package com.shuhler.teleport;
+package com.shuhler.teleport.input;
+
+import com.shuhler.teleport.query.TeleportQuery;
 
 import java.io.IOException;
 import java.nio.file.Files;

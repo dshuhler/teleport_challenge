@@ -1,4 +1,4 @@
-package com.shuhler.teleport.graph;
+package com.shuhler.teleport.model.graph;
 
 import java.util.Set;
 

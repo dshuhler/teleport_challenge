@@ -1,6 +1,6 @@
 package com.shuhler.teleport.model;
 
-import com.shuhler.teleport.Portal;
+import com.shuhler.teleport.input.Portal;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class NetworkConnectednessTest {
 
-    private TeleportationNetwork testNetwork;
+    private TeleportNet testNetwork;
 
     @BeforeEach
     public void init() {
@@ -28,7 +28,7 @@ public class NetworkConnectednessTest {
         //add some cities disconnected from other networks
         portals.add(new Portal("X", "Y"));
 
-        testNetwork = new TeleportationNetwork(portals);
+        testNetwork = new TeleportNet(portals);
     }
 
     @Test

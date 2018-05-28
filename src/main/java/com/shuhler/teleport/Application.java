@@ -1,6 +1,9 @@
 package com.shuhler.teleport;
 
-import com.shuhler.teleport.model.TeleportationNetwork;
+import com.shuhler.teleport.input.Portal;
+import com.shuhler.teleport.input.TeleportInputReader;
+import com.shuhler.teleport.model.TeleportNet;
+import com.shuhler.teleport.query.TeleportQuery;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -22,7 +25,7 @@ public class Application {
 
       List<Portal> portals = teleportInputReader.getPortals();
 
-      TeleportationNetwork network = new TeleportationNetwork(portals);
+      TeleportNet network = new TeleportNet(portals);
 
       List<TeleportQuery> queries = teleportInputReader.getQueries();
 

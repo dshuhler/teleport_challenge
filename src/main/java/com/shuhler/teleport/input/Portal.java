@@ -1,4 +1,4 @@
-package com.shuhler.teleport;
+package com.shuhler.teleport.input;
 
 import java.util.Objects;
 
