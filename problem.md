@@ -36,8 +36,8 @@ Example output:
 ~~~~
 Cities from Seattle in 1 jumps: New York, Baltimore
 Cities from Seattle in 2 jumps: New York, Baltimore, Philadelphia, Washington
-Can I teleport from New York to Atlanta: yes
-Can I teleport from Oakland to Atlanta: no
-Loop possible from Oakland: yes
-Loop possible from Washington: no
+Can I teleport from New York to Atlanta: true
+Can I teleport from Oakland to Atlanta: false
+Loop possible from Oakland: true
+Loop possible from Washington: false
 ~~~~
