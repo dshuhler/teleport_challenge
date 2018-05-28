@@ -7,14 +7,14 @@ import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
 
-public class InputReader {
+public class TeleportationInputReader {
 
   private static final String PORTAL_INPUT_DIVIDER = " - ";
 
   private List<String> inputLines;
 
 
-  public InputReader(Path inputFile) {
+  public TeleportationInputReader(Path inputFile) {
     try {
       inputLines = Files.readAllLines(inputFile);
     } catch (IOException e) {
@@ -47,5 +47,8 @@ public class InputReader {
   }
 
 
+  public List<TeleportQuery> getQueries() {
 
+
+  }
 }

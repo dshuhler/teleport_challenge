@@ -4,34 +4,33 @@ import java.util.Objects;
 
 public class Portal {
 
-  private String cityA;
-  private String cityB;
+    private String cityA;
+    private String cityB;
 
-  public Portal(String cityA, String cityB) {
-    this.cityA = cityA;
-    this.cityB = cityB;
-  }
+    public Portal(String cityA, String cityB) {
+        this.cityA = cityA;
+        this.cityB = cityB;
+    }
 
-  public String getCityA() {
-    return cityA;
-  }
+    public String getCityA() {
+        return cityA;
+    }
 
-  public String getCityB() {
-    return cityB;
-  }
+    public String getCityB() {
+        return cityB;
+    }
 
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    Portal portal = (Portal) o;
-    return Objects.equals(cityA, portal.cityA) &&
-            Objects.equals(cityB, portal.cityB);
-  }
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Portal portal = (Portal) o;
+        return Objects.equals(cityA, portal.cityA) &&
+                Objects.equals(cityB, portal.cityB);
+    }
 
-  @Override
-  public int hashCode() {
-
-    return Objects.hash(cityA, cityB);
-  }
+    @Override
+    public int hashCode() {
+        return Objects.hash(cityA, cityB);
+    }
 }

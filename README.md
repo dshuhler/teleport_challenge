@@ -12,4 +12,5 @@ This coding challenge attempts to test developer skill in a variety of areas. Th
 1. Come up with a way to encapsulate and execute queries
 1. Write unit tests for the above
 
-This implementation is intended to represent a skillful, but not necessarily *perfect* submission using Java.
+This implementation is intended to represent a skillful submission using Java. The design also does not represent the 
+only or necessarily the *best* approach to solving the problem.
