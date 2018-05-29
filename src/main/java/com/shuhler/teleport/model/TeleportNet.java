@@ -1,6 +1,9 @@
 package com.shuhler.teleport.model;
 
 import com.shuhler.teleport.input.Portal;
+import com.shuhler.teleport.model.graph.DepthFirstSearch;
+import com.shuhler.teleport.model.graph.Graph;
+import com.shuhler.teleport.model.graph.Node;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,15 +14,15 @@ public class TeleportNet {
 
     private Map<String, City> cityMap = new HashMap<>();
 
+    private Graph netGraph = new Graph();
 
     public TeleportNet(List<Portal> portals) {
-        portals.forEach(this::addPortalToNetwork);
+        portals.forEach(this::addPortalToGraph);
     }
 
     public Set<String> findLinkedCities(String cityName, int jumps) {
-        resetSearchFlags();
-        City rootCity = cityMap.get(cityName);
-        return rootCity.getLinkedCities(jumps);
+        DepthFirstSearch depthFirstSearch = new DepthFirstSearch();
+        return depthFirstSearch.nodesWithinDistance(netGraph, cityName, jumps);
     }
 
     public boolean areConnected(String cityNameA, String cityNameB) {
@@ -32,17 +35,15 @@ public class TeleportNet {
         return false;
     }
 
-    private void addPortalToNetwork(Portal portal) {
+    private void addPortalToGraph(Portal portal) {
+        netGraph.getNodes().putIfAbsent(portal.getCityA(), new Node(portal.getCityA()));
+        netGraph.getNodes().putIfAbsent(portal.getCityB(), new Node(portal.getCityB()));
 
-        cityMap.putIfAbsent(portal.getCityA(), new City(portal.getCityA()));
-        cityMap.putIfAbsent(portal.getCityB(), new City(portal.getCityB()));
+        Node cityA = netGraph.getNodes().get(portal.getCityA());
+        Node cityB = netGraph.getNodes().get(portal.getCityB());
 
-        City cityA = cityMap.get(portal.getCityA());
-        City cityB = cityMap.get(portal.getCityB());
-
-        cityA.addPortalLink(cityB);
-        cityB.addPortalLink(cityA);
-
+        cityA.addAdjacentNode(cityB);
+        cityB.addAdjacentNode(cityA);
     }
 
 

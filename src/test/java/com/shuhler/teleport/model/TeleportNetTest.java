@@ -60,7 +60,8 @@ public class TeleportNetTest {
 
     @Test
     public void testTwoQueriesOnSameNetwork() {
-        //this will fail if the implementation uses flags to track what nodes have been searched but fails to reset them
+        // this will fail if the implementation uses flags to track what nodes
+        // have been searched but fails to reset them
         testNetwork.findLinkedCities("A", 2);
         Set<String> linkedCityNames = testNetwork.findLinkedCities("A", 3);
 
