@@ -10,6 +10,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import static java.util.stream.Collectors.toSet;
+
 public class TeleportNet {
 
     private Map<String, City> cityMap = new HashMap<>();
@@ -22,7 +24,8 @@ public class TeleportNet {
 
     public Set<String> findLinkedCities(String cityName, int jumps) {
         DepthFirstSearch depthFirstSearch = new DepthFirstSearch();
-        return depthFirstSearch.nodesWithinDistance(netGraph, cityName, jumps);
+        Set<Node> linkedCities = depthFirstSearch.nodesWithinDistance(netGraph, cityName, jumps);
+        return linkedCities.stream().map(Node::getName).collect(toSet());
     }
 
     public boolean areConnected(String cityNameA, String cityNameB) {

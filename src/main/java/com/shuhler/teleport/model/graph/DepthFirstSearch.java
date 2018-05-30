@@ -6,21 +6,13 @@ import static java.util.stream.Collectors.toSet;
 
 public class DepthFirstSearch {
 
-
-
-    public Set<String> nodesWithinDistance(Graph graph, String startNodeName, int maxDepth) {
-
+    public Set<Node> nodesWithinDistance(Graph graph, String startNodeName, int maxDepth) {
         Set<Node> visited = new HashSet<>();
-
         Node startNode = graph.getNodes().get(startNodeName);
-
-        Set<Node> nodeResult = depthFirstSearch(startNode, visited, maxDepth);
-        return nodeResult.stream().map(Node::getName).collect(toSet());
-
+        return depthFirstSearch(startNode, visited, maxDepth);
     }
 
     private Set<Node> depthFirstSearch(Node root, Set<Node> visitedNodes, int maxDepth) {
-
         visitedNodes.add(root);
 
         if (maxDepth == 0) {
