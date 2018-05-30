@@ -15,7 +15,6 @@ public class TeleportInputReader {
 
     private List<String> inputLines;
 
-
     public TeleportInputReader(Path inputFile) {
         try {
             inputLines = Files.readAllLines(inputFile);
@@ -24,15 +23,14 @@ public class TeleportInputReader {
         }
     }
 
-    public List<Portal> getPortals() {
+    public List<PortalDefinition> getPortals() {
         return inputLines.stream()
                 .map(this::parsePortal)
                 .filter(Objects::nonNull)
                 .collect(Collectors.toList());
     }
 
-    private Portal parsePortal(String inputLine) {
-        //assumption: city names will never contain dashes
+    private PortalDefinition parsePortal(String inputLine) {
         if (!inputLine.contains(PORTAL_INPUT_DIVIDER)) {
             return null;
         }
@@ -43,7 +41,7 @@ public class TeleportInputReader {
         String cityA = inputLine.substring(0, dividerStartIndex);
         String cityB = inputLine.substring(dividerEndIndex);
 
-        return new Portal(cityA, cityB);
+        return new PortalDefinition(cityA, cityB);
     }
 
 

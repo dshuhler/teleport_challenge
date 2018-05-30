@@ -14,16 +14,16 @@ public class TeleportInputReaderTests {
 
     @Test
     public void testPortalRead() {
-        Path path = Paths.get("src/test/resources/portals.txt");
+        Path path = Paths.get("src/test/resources/portalDefinitions.txt");
         TeleportInputReader teleportInputReader = new TeleportInputReader(path);
 
-        List<Portal> portals = teleportInputReader.getPortals();
+        List<PortalDefinition> portalDefinitions = teleportInputReader.getPortals();
 
-        assertEquals(4, portals.size());
-        assertTrue(portals.contains(new Portal("Washington", "Baltimore")));
-        assertTrue(portals.contains(new Portal("Washington", "Atlanta")));
-        assertTrue(portals.contains(new Portal("Baltimore", "Philadelphia")));
-        assertTrue(portals.contains(new Portal("Philadelphia", "New York")));
+        assertEquals(4, portalDefinitions.size());
+        assertTrue(portalDefinitions.contains(new PortalDefinition("Washington", "Baltimore")));
+        assertTrue(portalDefinitions.contains(new PortalDefinition("Washington", "Atlanta")));
+        assertTrue(portalDefinitions.contains(new PortalDefinition("Baltimore", "Philadelphia")));
+        assertTrue(portalDefinitions.contains(new PortalDefinition("Philadelphia", "New York")));
     }
 
 }

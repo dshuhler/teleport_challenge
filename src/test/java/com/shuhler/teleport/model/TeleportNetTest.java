@@ -1,6 +1,6 @@
 package com.shuhler.teleport.model;
 
-import com.shuhler.teleport.input.Portal;
+import com.shuhler.teleport.input.PortalDefinition;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -15,13 +15,13 @@ public class TeleportNetTest {
     @BeforeAll
     private static void init() {
         var portals = List.of(
-                new Portal("A", "B"),
-                new Portal("A", "C"),
-                new Portal("B", "C"),
-                new Portal("B", "D"),
-                new Portal("D", "F"),
-                new Portal("F", "H"),
-                new Portal("D", "E"));
+                new PortalDefinition("A", "B"),
+                new PortalDefinition("A", "C"),
+                new PortalDefinition("B", "C"),
+                new PortalDefinition("B", "D"),
+                new PortalDefinition("D", "F"),
+                new PortalDefinition("F", "H"),
+                new PortalDefinition("D", "E"));
 
         testNetwork = new TeleportNet(portals);
     }

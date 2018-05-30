@@ -15,7 +15,4 @@ public class Graph {
         return nodes.get(name);
     }
 
-    public void setNodes(Map<String, Node> nodes) {
-        this.nodes = nodes;
-    }
 }

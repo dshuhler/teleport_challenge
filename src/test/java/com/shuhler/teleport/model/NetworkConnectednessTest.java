@@ -1,11 +1,9 @@
 package com.shuhler.teleport.model;
 
-import com.shuhler.teleport.input.Portal;
+import com.shuhler.teleport.input.PortalDefinition;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertFalse;
@@ -19,13 +17,13 @@ public class NetworkConnectednessTest {
     private static void init() {
 
         var portals = List.of(
-                new Portal("A", "B"),
-                new Portal("B", "C"),
-                new Portal("C", "D"),
-                new Portal("D", "DD"),
-                new Portal("D", "E"),
-                new Portal("E", "F"),
-                new Portal("X", "Y")); //add some cities disconnected from other networks
+                new PortalDefinition("A", "B"),
+                new PortalDefinition("B", "C"),
+                new PortalDefinition("C", "D"),
+                new PortalDefinition("D", "DD"),
+                new PortalDefinition("D", "E"),
+                new PortalDefinition("E", "F"),
+                new PortalDefinition("X", "Y")); //add some cities disconnected from other networks
 
         testNetwork = new TeleportNet(portals);
     }
