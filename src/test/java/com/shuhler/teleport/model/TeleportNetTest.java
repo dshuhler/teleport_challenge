@@ -1,77 +1,46 @@
 package com.shuhler.teleport.model;
 
 import com.shuhler.teleport.input.Portal;
-import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TeleportNetTest {
 
-    private TeleportNet testNetwork;
+    private static TeleportNet testNetwork;
 
-    @BeforeEach
-    public void init() {
-        List<Portal> portals = new ArrayList<>();
-
-        portals.add(new Portal("A", "B"));
-        portals.add(new Portal("A", "C"));
-        portals.add(new Portal("B", "C"));
-        portals.add(new Portal("B", "D"));
-        portals.add(new Portal("D", "F"));
-        portals.add(new Portal("F", "H"));
-        portals.add(new Portal("D", "E"));
+    @BeforeAll
+    private static void init() {
+        var portals = List.of(
+                new Portal("A", "B"),
+                new Portal("A", "C"),
+                new Portal("B", "C"),
+                new Portal("B", "D"),
+                new Portal("D", "F"),
+                new Portal("F", "H"),
+                new Portal("D", "E"));
 
         testNetwork = new TeleportNet(portals);
     }
 
-
     @Test
     public void testZeroJumpLinkedCities() {
-        assertEquals(0, testNetwork.findLinkedCities("A", 0).size());
+        assertThat(testNetwork.findLinkedCities("A", 0)).isEmpty();
+        assertThat(testNetwork.findLinkedCities("E", 0)).isEmpty();
     }
 
     @Test
     public void testOneJumpLinkedCities() {
-        Set<String> linkedCityNames = testNetwork.findLinkedCities("A", 1);
-
-        assertEquals(2, linkedCityNames.size());
-        assertTrue(linkedCityNames.contains("B"));
-        assertTrue(linkedCityNames.contains("C"));
+        assertThat(testNetwork.findLinkedCities("A", 1)).containsExactly("B", "C");
+        assertThat(testNetwork.findLinkedCities("E", 1)).containsExactly("D");
     }
 
     @Test
     public void testMultiJumpLinkedCities() {
-        Set<String> linkedCityNames = testNetwork.findLinkedCities("A", 3);
-
-        assertEquals(5, linkedCityNames.size());
-        assertTrue(linkedCityNames.contains("B"));
-        assertTrue(linkedCityNames.contains("C"));
-        assertTrue(linkedCityNames.contains("D"));
-        assertTrue(linkedCityNames.contains("E"));
-        assertTrue(linkedCityNames.contains("F"));
+        assertThat(testNetwork.findLinkedCities("A", 3)).containsExactly("B", "C", "D", "E", "F");
+        assertThat(testNetwork.findLinkedCities("E", 3)).containsExactly("A", "B", "C", "D", "F", "H");
     }
-
-    @Test
-    public void testTwoQueriesOnSameNetwork() {
-        // this will fail if the implementation uses flags to track what nodes
-        // have been searched but fails to reset them
-        testNetwork.findLinkedCities("A", 2);
-        Set<String> linkedCityNames = testNetwork.findLinkedCities("A", 3);
-
-        assertEquals(5, linkedCityNames.size());
-        assertTrue(linkedCityNames.contains("B"));
-        assertTrue(linkedCityNames.contains("C"));
-        assertTrue(linkedCityNames.contains("D"));
-        assertTrue(linkedCityNames.contains("E"));
-        assertTrue(linkedCityNames.contains("F"));
-    }
-
-
 }
