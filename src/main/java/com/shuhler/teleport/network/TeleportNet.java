@@ -1,7 +1,7 @@
-package com.shuhler.teleport.model;
+package com.shuhler.teleport.network;
 
 import com.shuhler.teleport.input.PortalDefinition;
-import com.shuhler.teleport.model.graph.*;
+import com.shuhler.teleport.network.graph.*;
 
 import java.util.List;
 import java.util.Set;

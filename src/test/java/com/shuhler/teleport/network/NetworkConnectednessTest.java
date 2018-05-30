@@ -1,4 +1,4 @@
-package com.shuhler.teleport.model;
+package com.shuhler.teleport.network;
 
 import com.shuhler.teleport.input.PortalDefinition;
 import org.junit.jupiter.api.BeforeAll;

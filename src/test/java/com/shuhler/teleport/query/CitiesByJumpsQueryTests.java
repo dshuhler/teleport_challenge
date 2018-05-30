@@ -1,6 +1,6 @@
 package com.shuhler.teleport.query;
 
-import com.shuhler.teleport.model.TeleportNet;
+import com.shuhler.teleport.network.TeleportNet;
 import org.junit.jupiter.api.Test;
 
 import java.util.Set;

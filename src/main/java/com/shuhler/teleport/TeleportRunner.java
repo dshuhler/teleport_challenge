@@ -1,7 +1,7 @@
 package com.shuhler.teleport;
 
 import com.shuhler.teleport.input.TeleportInputReader;
-import com.shuhler.teleport.model.TeleportNet;
+import com.shuhler.teleport.network.TeleportNet;
 import com.shuhler.teleport.query.TeleportQuery;
 
 import java.nio.file.Path;

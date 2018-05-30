@@ -1,4 +1,4 @@
-package com.shuhler.teleport.model.graph;
+package com.shuhler.teleport.network.graph;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,6 +1,6 @@
 package com.shuhler.teleport.query;
 
-import com.shuhler.teleport.model.TeleportNet;
+import com.shuhler.teleport.network.TeleportNet;
 
 import java.util.List;
 
