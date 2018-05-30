@@ -6,14 +6,14 @@ import java.util.regex.Pattern;
 
 public class LoopQuery extends TeleportQuery {
 
-    protected static final Pattern PATTERN = Pattern.compile("^loop possible from.*");
+    static final Pattern PATTERN = Pattern.compile("^loop possible:.*");
 
     public LoopQuery(String queryString) {
         super(queryString);
     }
 
     @Override
-    String query(TeleportNet teleportNet) {
+    public String query(TeleportNet teleportNet) {
         String cityName = getParams().get(0);
         boolean result = teleportNet.hasLoop(cityName);
         return "Loop possible from " + cityName + ": " + result;

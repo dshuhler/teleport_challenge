@@ -34,5 +34,5 @@ public abstract class TeleportQuery {
        return List.of(queryParams.split(", "));
     }
 
-    abstract String query(TeleportNet teleportNet);
+    abstract public String query(TeleportNet teleportNet);
 }

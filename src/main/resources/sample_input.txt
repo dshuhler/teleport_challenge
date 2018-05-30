@@ -7,9 +7,9 @@ San Fransisco - Oakland
 Los Angeles - Oakland
 Seattle - New York
 Seattle - Baltimore
-cities from Seattle in 1 jumps
-cities from Seattle in 2 jumps
-can I teleport from New York to Atlanta
-can I teleport from Oakland to Atlanta
-loop possible from Oakland
-loop possible from Washington
+cities in jumps: Seattle, 1
+cities in jumps: Seattle, 2
+teleport between: New York, Atlanta
+teleport between: Oakland, Atlanta
+loop possible: Oakland
+loop possible: Washington

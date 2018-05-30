@@ -7,14 +7,14 @@ import java.util.regex.Pattern;
 
 public class CitiesByJumpsQuery extends TeleportQuery {
 
-    protected static final Pattern PATTERN = Pattern.compile("^cities in jumps:.*");
+    static final Pattern PATTERN = Pattern.compile("^cities in jumps:.*");
 
     public CitiesByJumpsQuery(String queryString) {
         super(queryString);
     }
 
     @Override
-    String query(TeleportNet teleportNet) {
+    public String query(TeleportNet teleportNet) {
 
         String cityName = getParams().get(0);
         int jumps = Integer.parseInt(getParams().get(1));

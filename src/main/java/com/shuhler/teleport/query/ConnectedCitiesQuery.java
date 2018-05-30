@@ -6,14 +6,14 @@ import java.util.regex.Pattern;
 
 public class ConnectedCitiesQuery extends TeleportQuery {
 
-    protected static final Pattern PATTERN = Pattern.compile("^can I teleport from.*");
+    static final Pattern PATTERN = Pattern.compile("^teleport between:.*");
 
     public ConnectedCitiesQuery(String queryString) {
         super(queryString);
     }
 
     @Override
-    String query(TeleportNet teleportNet) {
+    public String query(TeleportNet teleportNet) {
 
         String cityA = getParams().get(0);
         String cityB = getParams().get(1);
