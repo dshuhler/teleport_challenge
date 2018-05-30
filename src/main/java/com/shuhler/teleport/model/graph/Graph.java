@@ -11,6 +11,10 @@ public class Graph {
         return nodes;
     }
 
+    public Node getNode(String name) {
+        return nodes.get(name);
+    }
+
     public void setNodes(Map<String, Node> nodes) {
         this.nodes = nodes;
     }

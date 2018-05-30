@@ -1,10 +1,7 @@
 package com.shuhler.teleport.model;
 
 import com.shuhler.teleport.input.Portal;
-import com.shuhler.teleport.model.graph.ConnectednessStrategy;
-import com.shuhler.teleport.model.graph.DepthFirstSearch;
-import com.shuhler.teleport.model.graph.Graph;
-import com.shuhler.teleport.model.graph.Node;
+import com.shuhler.teleport.model.graph.*;
 
 import java.util.HashMap;
 import java.util.List;
@@ -30,22 +27,23 @@ public class TeleportNet {
     public boolean areConnected(String cityNameA, String cityNameB) {
         var connectednessStrategy = new ConnectednessStrategy();
 
-        Node cityA = netGraph.getNodes().get(cityNameA);
-        Node cityB = netGraph.getNodes().get(cityNameB);
+        Node cityA = netGraph.getNode(cityNameA);
+        Node cityB = netGraph.getNode(cityNameB);
 
         return connectednessStrategy.areConnected(cityA, cityB);
     }
 
     public boolean hasLoop(String cityName) {
-        return false;
+        var loopFinder = new LoopFinder();
+        return loopFinder.hasLoop(netGraph.getNode(cityName));
     }
 
     private void addPortalToGraph(Portal portal) {
         netGraph.getNodes().putIfAbsent(portal.getCityA(), new Node(portal.getCityA()));
         netGraph.getNodes().putIfAbsent(portal.getCityB(), new Node(portal.getCityB()));
 
-        Node cityA = netGraph.getNodes().get(portal.getCityA());
-        Node cityB = netGraph.getNodes().get(portal.getCityB());
+        Node cityA = netGraph.getNode(portal.getCityA());
+        Node cityB = netGraph.getNode(portal.getCityB());
 
         cityA.addAdjacentNode(cityB);
         cityB.addAdjacentNode(cityA);
