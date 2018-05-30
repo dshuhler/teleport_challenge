@@ -1,8 +1,8 @@
 #### Teleportation Coding Challenge Reference Implementation
 
-[See problem definition here](problem.md)
+[See problem definition here](docs/problem.md)
 
-[See criteria for judging here](criteria.md)
+[See criteria for judging here](docs/criteria.md)
 
 ##### Background
 This coding challenge attempts to test developer skill in a variety of areas. The candidate will have to do the following:
