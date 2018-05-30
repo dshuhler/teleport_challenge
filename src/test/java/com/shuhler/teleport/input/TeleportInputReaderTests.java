@@ -1,29 +1,24 @@
 package com.shuhler.teleport.input;
-
 import org.junit.jupiter.api.Test;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class TeleportInputReaderTests {
 
     @Test
-    public void testPortalRead() {
-        Path path = Paths.get("src/test/resources/portals.txt");
-        TeleportInputReader teleportInputReader = new TeleportInputReader(path);
+    public void canReadPortals() {
+        Path inputPath = Paths.get("src/test/resources/test_sample_input.txt");
+        TeleportInputReader teleportInputReader = new TeleportInputReader(inputPath);
+        var portalDefinitions = teleportInputReader.getPortals();
 
-        List<PortalDefinition> portalDefinitions = teleportInputReader.getPortals();
-
-        assertEquals(4, portalDefinitions.size());
-        assertTrue(portalDefinitions.contains(new PortalDefinition("Washington", "Baltimore")));
-        assertTrue(portalDefinitions.contains(new PortalDefinition("Washington", "Atlanta")));
-        assertTrue(portalDefinitions.contains(new PortalDefinition("Baltimore", "Philadelphia")));
-        assertTrue(portalDefinitions.contains(new PortalDefinition("Philadelphia", "New York")));
+        assertThat(portalDefinitions).containsExactlyInAnyOrder(
+                new PortalDefinition("Washington", "Baltimore"),
+                new PortalDefinition("Washington", "Atlanta"),
+                new PortalDefinition("Baltimore", "Philadelphia"),
+                new PortalDefinition("Philadelphia", "New York"));
     }
 
 }
