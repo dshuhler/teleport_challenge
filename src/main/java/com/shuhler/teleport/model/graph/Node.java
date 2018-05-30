@@ -26,4 +26,11 @@ public class Node {
     public void addAdjacentNode(Node node) {
         adjacentNodes.add(node);
     }
+
+    @Override
+    public String toString() {
+        return "Node{" +
+                "name='" + name + '\'' +
+                '}';
+    }
 }

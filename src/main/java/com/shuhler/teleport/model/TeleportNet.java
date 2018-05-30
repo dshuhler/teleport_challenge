@@ -1,6 +1,7 @@
 package com.shuhler.teleport.model;
 
 import com.shuhler.teleport.input.Portal;
+import com.shuhler.teleport.model.graph.ConnectednessStrategy;
 import com.shuhler.teleport.model.graph.DepthFirstSearch;
 import com.shuhler.teleport.model.graph.Graph;
 import com.shuhler.teleport.model.graph.Node;
@@ -13,8 +14,6 @@ import java.util.Set;
 import static java.util.stream.Collectors.toSet;
 
 public class TeleportNet {
-
-    private Map<String, City> cityMap = new HashMap<>();
 
     private Graph netGraph = new Graph();
 
@@ -29,9 +28,12 @@ public class TeleportNet {
     }
 
     public boolean areConnected(String cityNameA, String cityNameB) {
-        resetSearchFlags();
-        City rootCity = cityMap.get(cityNameA);
-        return rootCity.isConnectedTo(cityNameB);
+        var connectednessStrategy = new ConnectednessStrategy();
+
+        Node cityA = netGraph.getNodes().get(cityNameA);
+        Node cityB = netGraph.getNodes().get(cityNameB);
+
+        return connectednessStrategy.areConnected(cityA, cityB);
     }
 
     public boolean hasLoop(String cityName) {
@@ -48,11 +50,5 @@ public class TeleportNet {
         cityA.addAdjacentNode(cityB);
         cityB.addAdjacentNode(cityA);
     }
-
-
-    private void resetSearchFlags() {
-        cityMap.values().forEach(c -> c.setSearched(false));
-    }
-
 
 }
