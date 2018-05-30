@@ -1,5 +1,7 @@
-package com.shuhler.teleport.network.graph;
+package com.shuhler.teleport.network.graph.algo;
 
+
+import com.shuhler.teleport.network.graph.Node;
 
 import java.util.HashSet;
 import java.util.Set;

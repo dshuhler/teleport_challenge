@@ -2,6 +2,9 @@ package com.shuhler.teleport.network;
 
 import com.shuhler.teleport.input.PortalDefinition;
 import com.shuhler.teleport.network.graph.*;
+import com.shuhler.teleport.network.graph.algo.SimpleConnectivity;
+import com.shuhler.teleport.network.graph.algo.DistanceSearch;
+import com.shuhler.teleport.network.graph.algo.LoopFinder;
 
 import java.util.List;
 import java.util.Set;
@@ -17,13 +20,13 @@ public class TeleportNet {
     }
 
     public Set<String> findLinkedCities(String cityName, int jumps) {
-        DepthFirstSearch depthFirstSearch = new DepthFirstSearch();
+        DistanceSearch depthFirstSearch = new DistanceSearch();
         Set<Node> linkedCities = depthFirstSearch.nodesWithinDistance(netGraph, cityName, jumps);
         return linkedCities.stream().map(Node::getName).collect(toSet());
     }
 
     public boolean areConnected(String cityNameA, String cityNameB) {
-        var connectednessStrategy = new ConnectednessStrategy();
+        var connectednessStrategy = new SimpleConnectivity();
 
         Node cityA = netGraph.getNode(cityNameA);
         Node cityB = netGraph.getNode(cityNameB);

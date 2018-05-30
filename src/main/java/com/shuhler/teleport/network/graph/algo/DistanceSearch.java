@@ -1,10 +1,13 @@
-package com.shuhler.teleport.network.graph;
+package com.shuhler.teleport.network.graph.algo;
+
+import com.shuhler.teleport.network.graph.Graph;
+import com.shuhler.teleport.network.graph.Node;
 
 import java.util.*;
 
 import static java.util.stream.Collectors.toSet;
 
-public class DepthFirstSearch {
+public class DistanceSearch {
 
     public Set<Node> nodesWithinDistance(Graph graph, String startNodeName, int maxDepth) {
         Set<Node> visited = new HashSet<>();

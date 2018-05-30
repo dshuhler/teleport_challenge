@@ -1,11 +1,13 @@
-package com.shuhler.teleport.network.graph;
+package com.shuhler.teleport.network.graph.algo;
+
+import com.shuhler.teleport.network.graph.Node;
 
 import java.util.ArrayDeque;
 import java.util.HashSet;
 
 import static java.util.stream.Collectors.toSet;
 
-public class ConnectednessStrategy {
+public class SimpleConnectivity {
 
     public boolean areConnected(Node nodeA, Node nodeB) {
 
