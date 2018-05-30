@@ -14,7 +14,7 @@ public class TeleportInputReaderTests {
 
     @Test
     public void testPortalRead() {
-        Path path = Paths.get("src/test/resources/portalDefinitions.txt");
+        Path path = Paths.get("src/test/resources/portals.txt");
         TeleportInputReader teleportInputReader = new TeleportInputReader(path);
 
         List<PortalDefinition> portalDefinitions = teleportInputReader.getPortals();
