@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 
 public class TeleportRunner {
 
-
   public static void main(String[] args) {
 
       if (args.length != 1) {
@@ -19,16 +18,13 @@ public class TeleportRunner {
         return;
       }
 
-      Path pathToInputFile = Paths.get(args[0]);
-      TeleportInputReader teleportInputReader = new TeleportInputReader(pathToInputFile);
+      Path inputFile = Paths.get(args[0]);
+      TeleportInputReader teleportInputReader = new TeleportInputReader(inputFile);
       TeleportNet network = new TeleportNet(teleportInputReader.getPortals());
 
       List<TeleportQuery> queries = teleportInputReader.getQueries();
       List<String> queryResults = queries.stream().map(q -> q.query(network)).collect(Collectors.toList());
 
-      for (String result : queryResults) {
-          System.out.println(result);
-      }
+      queryResults.forEach(System.out::println);
   }
-
 }
