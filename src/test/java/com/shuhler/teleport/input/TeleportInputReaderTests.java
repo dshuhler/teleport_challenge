@@ -11,8 +11,8 @@ public class TeleportInputReaderTests {
     @Test
     public void canReadPortals() {
         Path inputPath = Paths.get("src/test/resources/test_sample_input.txt");
-        TeleportInputReader teleportInputReader = new TeleportInputReader(inputPath);
-        var portalDefinitions = teleportInputReader.getPortals();
+        TextFileInputReader textFileInputReader = new TextFileInputReader(inputPath);
+        var portalDefinitions = textFileInputReader.getPortals();
 
         assertThat(portalDefinitions).containsExactlyInAnyOrder(
                 new PortalDefinition("Washington", "Baltimore"),

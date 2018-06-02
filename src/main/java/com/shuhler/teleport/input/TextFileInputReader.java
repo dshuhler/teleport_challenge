@@ -7,15 +7,17 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
+import java.util.OptionalInt;
 import java.util.stream.Collectors;
 
-public class TeleportInputReader {
+public class TextFileInputReader {
 
     private static final String PORTAL_INPUT_DIVIDER = " - ";
 
     private List<String> inputLines;
 
-    public TeleportInputReader(Path inputFile) {
+    public TextFileInputReader(Path inputFile) {
         try {
             inputLines = Files.readAllLines(inputFile);
         } catch (IOException e) {
@@ -26,13 +28,14 @@ public class TeleportInputReader {
     public List<PortalDefinition> getPortals() {
         return inputLines.stream()
                 .map(this::parsePortal)
-                .filter(Objects::nonNull)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .collect(Collectors.toList());
     }
 
-    private PortalDefinition parsePortal(String inputLine) {
+    private Optional<PortalDefinition> parsePortal(String inputLine) {
         if (!inputLine.contains(PORTAL_INPUT_DIVIDER)) {
-            return null;
+            return Optional.empty();
         }
 
         int dividerStartIndex = inputLine.indexOf(PORTAL_INPUT_DIVIDER);
@@ -41,14 +44,15 @@ public class TeleportInputReader {
         String cityA = inputLine.substring(0, dividerStartIndex);
         String cityB = inputLine.substring(dividerEndIndex);
 
-        return new PortalDefinition(cityA, cityB);
+        return Optional.of(new PortalDefinition(cityA, cityB));
     }
 
 
     public List<TeleportQuery> getQueries() {
         return inputLines.stream()
                 .map(TeleportQuery::buildQuery)
-                .filter(Objects::nonNull)
+                .filter(Optional::isPresent)
+                .map(Optional::get)
                 .collect(Collectors.toList());
     }
 

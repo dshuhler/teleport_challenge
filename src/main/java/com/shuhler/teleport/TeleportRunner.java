@@ -1,6 +1,6 @@
 package com.shuhler.teleport;
 
-import com.shuhler.teleport.input.TeleportInputReader;
+import com.shuhler.teleport.input.TextFileInputReader;
 import com.shuhler.teleport.network.TeleportNet;
 import com.shuhler.teleport.query.TeleportQuery;
 
@@ -19,10 +19,10 @@ public class TeleportRunner {
       }
 
       Path inputFile = Paths.get(args[0]);
-      TeleportInputReader teleportInputReader = new TeleportInputReader(inputFile);
-      TeleportNet network = new TeleportNet(teleportInputReader.getPortals());
+      TextFileInputReader textFileInputReader = new TextFileInputReader(inputFile);
+      TeleportNet network = new TeleportNet(textFileInputReader.getPortals());
 
-      List<TeleportQuery> queries = teleportInputReader.getQueries();
+      List<TeleportQuery> queries = textFileInputReader.getQueries();
       List<String> queryResults = queries.stream().map(q -> q.query(network)).collect(Collectors.toList());
 
       queryResults.forEach(System.out::println);
