@@ -6,14 +6,12 @@ import org.junit.jupiter.api.Test;
 import java.util.Set;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class CitiesByJumpsQueryTests {
 
     private TeleportNet mockTeleportNet = mock(TeleportNet.class);
-
 
     @Test
     public void testOneWordCities() {
@@ -28,5 +26,4 @@ public class CitiesByJumpsQueryTests {
         when(mockTeleportNet.findLinkedCities("San Fransisco", 2)).thenReturn(Set.of("Las Vegas", "A A A"));
         assertThat(query.query(mockTeleportNet)).isEqualTo("Cities from San Fransisco in 2 jumps: A A A, Las Vegas");
     }
-
 }

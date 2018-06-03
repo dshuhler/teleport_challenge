@@ -33,9 +33,9 @@ public abstract class TeleportQuery {
     }
 
     protected List<String> getParams() {
-        String queryParams = queryString.substring(queryString.indexOf(":") + 2);
+        String queryParams = queryString.substring(queryString.indexOf(':') + 2);
        return List.of(queryParams.split(", "));
     }
 
-    abstract public String query(TeleportNet teleportNet);
+    public abstract String query(TeleportNet teleportNet);
 }
