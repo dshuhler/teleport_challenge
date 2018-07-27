@@ -10,29 +10,40 @@ import static java.util.stream.Collectors.toSet;
 public class DistanceSearch {
 
     public Set<Node> nodesWithinDistance(Graph graph, String startNodeName, int maxDepth) {
-        Set<Node> visited = new HashSet<>();
         Node startNode = graph.getNodes().get(startNodeName);
-        return depthFirstSearch(startNode, visited, maxDepth);
+        return breadthFirstSearch(startNode, maxDepth);
     }
 
-    private Set<Node> depthFirstSearch(Node root, Set<Node> visitedNodes, int maxDepth) {
-        visitedNodes.add(root);
+    private Set<Node> breadthFirstSearch(Node root, int maxDepth) {
 
-        if (maxDepth == 0) {
-            return Collections.emptySet();
+        var nodeQueue = new ArrayDeque<Node>();
+        var depthQueue = new ArrayDeque<Integer>();
+        var visited = new HashSet<Node>();
+
+        nodeQueue.add(root);
+        depthQueue.add(0);
+        visited.add(root);
+
+        while(!nodeQueue.isEmpty()) {
+            Node node = nodeQueue.poll();
+            Integer depth = depthQueue.poll();
+
+            if (depth < maxDepth) {
+
+                var unvisitedAdjacentNodes = node.getAdjacentNodes().stream()
+                        .filter(n -> !visited.contains(n)).collect(toSet());
+
+                for (Node adjacentNode: unvisitedAdjacentNodes) {
+                    visited.add(adjacentNode);
+                    nodeQueue.add(adjacentNode);
+                    depthQueue.add(depth + 1);
+                }
+            }
         }
 
-        Set<Node> unsearchedAdjecentNodes = root.getAdjacentNodes().stream()
-                .filter(n -> !visitedNodes.contains(n)).collect(toSet());
+        visited.remove(root);
 
-        Set<Node> allChildNodes = new HashSet<>(unsearchedAdjecentNodes);
-
-        for (Node node : unsearchedAdjecentNodes) {
-            allChildNodes.addAll(depthFirstSearch(node, visitedNodes, maxDepth - 1));
-        }
-
-        return allChildNodes;
+        return visited;
     }
-
 
 }
