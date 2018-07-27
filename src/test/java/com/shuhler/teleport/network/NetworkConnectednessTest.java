@@ -19,10 +19,13 @@ public class NetworkConnectednessTest {
         var portals = List.of(
                 new PortalDefinition("A", "B"),
                 new PortalDefinition("B", "C"),
+                new PortalDefinition("A", "C"),
+                new PortalDefinition("B", "C"),
                 new PortalDefinition("C", "D"),
                 new PortalDefinition("D", "DD"),
                 new PortalDefinition("D", "E"),
                 new PortalDefinition("E", "F"),
+                new PortalDefinition("DD", "F"),
                 new PortalDefinition("X", "Y")); //add some cities disconnected from other networks
 
         testNetwork = new TeleportNet(portals);
