@@ -2,7 +2,6 @@ package com.shuhler.teleport.network;
 
 import com.shuhler.teleport.input.PortalDefinition;
 import org.junit.jupiter.api.BeforeAll;
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
@@ -13,8 +12,8 @@ public class TeleportNetTest {
 
     private static TeleportNet testNetwork;
 
-    @BeforeEach
-    private void init() {
+    @BeforeAll
+    private static void init() {
         var portals = List.of(
                 new PortalDefinition("A", "B"),
                 new PortalDefinition("A", "C"),
@@ -40,17 +39,8 @@ public class TeleportNetTest {
     }
 
     @Test
-    public void testMultiJumpLinkedCitiesFromE() {
+    public void testMultiJumpLinkedCities() {
+        assertThat(testNetwork.findLinkedCities("A", 3)).containsExactly("B", "C", "D", "E", "F");
         assertThat(testNetwork.findLinkedCities("E", 3)).containsExactly("A", "B", "C", "D", "F", "H");
     }
-
-    @Test
-    public void testMultiJumpLinkedCitiesFromA() {
-
-        var results = testNetwork.findLinkedCities("A", 3);
-
-        assertThat(results).containsExactly("B", "C", "D", "E", "F");
-    }
-
-
 }
